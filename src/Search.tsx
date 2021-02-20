@@ -1,23 +1,52 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { getDifficulty, getStudyArea } from "./data";
 interface Props {
   callback: Function;
 }
-function toCheckbox(arr: string[]) {
-  return arr.map((x, i) => (
-    <div>
-      <input type="checkbox" id={x} />
-      <label htmlFor={x}>{x}</label>
-    </div>
-  ));
-}
+//TODO: Fix any type hack to proper type.
+//TODO: Create filter function and pass back to parent component.
+function constructFilters(e: any) {}
+
 export default function Search({ callback }: Props): ReactElement {
-  const studyAreaCheckbox = toCheckbox(getStudyArea());
+  function toCheckbox(arr: string[], setState: any, state: any) {
+    function onChange(e: any) {
+      const tmp = [...state];
+      const index = parseInt(e.target.getAttribute("name"), 10);
+      tmp[index] = !tmp[index];
+      setState(tmp);
+    }
+
+    return arr.map((x, i) => (
+      <div key={i}>
+        <input type="checkbox" id={x} name={i.toString()} onChange={onChange} />
+        <label htmlFor={x}>{x}</label>
+      </div>
+    ));
+  }
+
+  const [studyArea, setStudyArea] = useState(
+    Array(getStudyArea().length).fill(false)
+  );
+  const studyAreaCheckbox = toCheckbox(getStudyArea(), setStudyArea, studyArea);
   studyAreaCheckbox.splice(8, 1); //Remove the empty check box
-  const difficultyCheckbox = toCheckbox(getDifficulty());
+
+  const [difficulty, setDifficulty] = useState(
+    Array(getDifficulty().length).fill(false)
+  );
+  const difficultyCheckbox = toCheckbox(
+    getDifficulty(),
+    setDifficulty,
+    difficulty
+  );
+
+  const [text, setText] = useState("");
   return (
     <div>
-      <input type="text" />
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
       <div>{studyAreaCheckbox}</div>
       <div>{difficultyCheckbox}</div>
     </div>

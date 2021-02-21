@@ -16,7 +16,9 @@ function App() {
   };
   const createFilter = (x: courseData) => {
     const { text, difficulty, studyArea } = filter;
-    const isText = x.description.includes(text) || x.title.includes(text);
+    const isText =
+      x.description.toLowerCase().includes(text.toLowerCase()) ||
+      x.title.toLowerCase().includes(text.toLowerCase());
     const isDifficulty =
       difficulty.length === 0 ? true : difficulty.includes(x.difficulty);
     const isStudyArea =
@@ -31,9 +33,11 @@ function App() {
   const data = loadCourseData();
   return (
     <div style={style}>
-      {JSON.stringify(filter)}
       <Search callback={searchCallback} />
-      <Display courseListData={data.filter(createFilter)} />
+      <Display
+        courseListData={data.filter(createFilter)}
+        highlight={filter.text}
+      />
     </div>
   );
 }

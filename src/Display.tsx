@@ -4,9 +4,15 @@ import { courseData } from "./data";
 
 interface Props {
   courseListData: courseData[];
+  highlight: string;
 }
 
-export default function Display({ courseListData }: Props): ReactElement {
-  const courseList = courseListData.map((x, i) => <Course data={x} key={i} />);
+export default function Display({
+  courseListData,
+  highlight,
+}: Props): ReactElement {
+  const courseList = courseListData.map((x, i) => (
+    <Course data={x} key={i} highlight={highlight} />
+  ));
   return <React.Fragment>{courseList}</React.Fragment>;
 }

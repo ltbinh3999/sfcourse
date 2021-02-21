@@ -42,8 +42,10 @@ export default function Course({ data, highlight }: Props): ReactElement {
   return (
     <div style={style}>
       <div style={bigText}>
-        <span>{data.code + ": "}</span>
-        <span>{highlightText(data.title, highlight)}</span>
+        <a href={`//${data.code}.stanford.edu`} target="_blank">
+          <span>{data.code + ": "}</span>
+          <span>{highlightText(data.title, highlight)}</span>
+        </a>
       </div>
       <div>{`Difficulty: ${data.difficulty} | Study area: ${data.area}`}</div>
       <div>{highlightText(data.description, highlight)}</div>

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/sfcourse/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/sfcourse/static/js/main.6bc386cf.chunk.js",
+    "main.js.map": "/sfcourse/static/js/main.6bc386cf.chunk.js.map",
+    "runtime-main.js": "/sfcourse/static/js/runtime-main.70476f88.js",
+    "runtime-main.js.map": "/sfcourse/static/js/runtime-main.70476f88.js.map",
+    "static/js/2.3bc60b3e.chunk.js": "/sfcourse/static/js/2.3bc60b3e.chunk.js",
+    "static/js/2.3bc60b3e.chunk.js.map": "/sfcourse/static/js/2.3bc60b3e.chunk.js.map",
+    "static/js/3.0140378e.chunk.js": "/sfcourse/static/js/3.0140378e.chunk.js",
+    "static/js/3.0140378e.chunk.js.map": "/sfcourse/static/js/3.0140378e.chunk.js.map",
+    "index.html": "/sfcourse/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/sfcourse/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.3bc60b3e.chunk.js.LICENSE.txt": "/sfcourse/static/js/2.3bc60b3e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.70476f88.js",
+    "static/js/2.3bc60b3e.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.6bc386cf.chunk.js"
+  ]
+}

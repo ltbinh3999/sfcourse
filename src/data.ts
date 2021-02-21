@@ -2545,4 +2545,25 @@ function loadCourseData(): courseData[] {
   ];
 }
 
-export { getStudyArea, getDifficulty, loadCourseData };
+function getCount() {
+  const data = loadCourseData();
+  const areaDict = new Map();
+  const difficultyDict = new Map();
+  data.forEach((x) => {
+    const { area, difficulty } = x;
+
+    if (areaDict.has(area)) {
+      areaDict.set(area, areaDict.get(area) + 1);
+    } else {
+      areaDict.set(area, 1);
+    }
+
+    if (difficultyDict.has(difficulty)) {
+      difficultyDict.set(difficulty, difficultyDict.get(difficulty) + 1);
+    } else {
+      difficultyDict.set(difficulty, 1);
+    }
+  });
+  return { areaDict, difficultyDict };
+}
+export { getStudyArea, getDifficulty, loadCourseData, getCount };

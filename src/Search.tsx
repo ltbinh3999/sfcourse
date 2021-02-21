@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from "react";
-import { getDifficulty, getStudyArea } from "./data";
+import { getDifficulty, getStudyArea, getCount } from "./data";
 import CSS from "csstype";
 
 interface Props {
@@ -11,7 +11,14 @@ const bigText: CSS.Properties = {
   fontSize: "1.25em",
 };
 export default function Search({ callback }: Props): ReactElement {
-  const toCheckbox = (arr: string[], setState: any, state: any) => {
+  const { areaDict, difficultyDict } = getCount();
+
+  const toCheckbox = (
+    arr: string[],
+    setState: any,
+    state: any,
+    dict: Map<string, number>
+  ) => {
     const onChange = (e: any) => {
       const tmp = [...state];
       const index = parseInt(e.target.getAttribute("name"), 10);
@@ -22,7 +29,7 @@ export default function Search({ callback }: Props): ReactElement {
     return arr.map((x, i) => (
       <div key={i}>
         <input type="checkbox" id={x} name={i.toString()} onChange={onChange} />
-        <label htmlFor={x}>{x}</label>
+        <label htmlFor={x}>{`${x} (${dict.get(x)})`}</label>
       </div>
     ));
   };
@@ -30,7 +37,12 @@ export default function Search({ callback }: Props): ReactElement {
   const [studyArea, setStudyArea] = useState(
     Array(getStudyArea().length).fill(false)
   );
-  const studyAreaCheckbox = toCheckbox(getStudyArea(), setStudyArea, studyArea);
+  const studyAreaCheckbox = toCheckbox(
+    getStudyArea(),
+    setStudyArea,
+    studyArea,
+    areaDict
+  );
   studyAreaCheckbox.splice(8, 1); //Remove the empty check box
 
   const [difficulty, setDifficulty] = useState(
@@ -40,7 +52,8 @@ export default function Search({ callback }: Props): ReactElement {
   const difficultyCheckbox = toCheckbox(
     getDifficulty(),
     setDifficulty,
-    difficulty
+    difficulty,
+    difficultyDict
   );
 
   const [text, setText] = useState("");

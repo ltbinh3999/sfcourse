@@ -6,8 +6,7 @@ import CSS from "csstype";
 
 const style: CSS.Properties = {
   display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  flexDirection: "row",
 };
 
 function App() {
@@ -34,10 +33,19 @@ function App() {
   return (
     <div style={style}>
       <Search callback={searchCallback} />
-      <Display
-        courseListData={data.filter(createFilter)}
-        highlight={filter.text}
-      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flexGrow: 0,
+        }}
+      >
+        <Display
+          courseListData={data.filter(createFilter)}
+          highlight={filter.text}
+        />
+      </div>
     </div>
   );
 }

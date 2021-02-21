@@ -6,15 +6,17 @@ interface Props {
   data: courseData;
   highlight: string;
 }
+const bigText: CSS.Properties = {
+  fontSize: "1.25em",
+};
 const style: CSS.Properties = {
-  maxWidth: "80%",
+  width: "90%",
   border: "1px solid",
-  marginBottom: "1%",
+  marginTop: "1%",
+  padding: "0.5%",
 };
 export default function Course({ data, highlight }: Props): ReactElement {
-  //handle case
   const highlightText = (text: string, highlight: string) => {
-    //console.log(text);
     if (highlight.length === 0) {
       return text;
     } else {
@@ -39,7 +41,7 @@ export default function Course({ data, highlight }: Props): ReactElement {
   };
   return (
     <div style={style}>
-      <div>
+      <div style={bigText}>
         <span>{data.code + ": "}</span>
         <span>{highlightText(data.title, highlight)}</span>
       </div>

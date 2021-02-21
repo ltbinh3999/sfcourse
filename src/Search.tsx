@@ -1,12 +1,15 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { getDifficulty, getStudyArea } from "./data";
+import CSS from "csstype";
+
 interface Props {
   callback: Function;
 }
 //TODO: Fix any type hack to proper type.
 //TODO: Create filter function and pass back to parent component.
-function constructFilters(e: any) {}
-
+const bigText: CSS.Properties = {
+  fontSize: "1.25em",
+};
 export default function Search({ callback }: Props): ReactElement {
   const toCheckbox = (arr: string[], setState: any, state: any) => {
     const onChange = (e: any) => {
@@ -50,14 +53,24 @@ export default function Search({ callback }: Props): ReactElement {
     };
     callback(filterObj);
   }, [JSON.stringify(studyArea), JSON.stringify(difficulty), text]);
+
   return (
-    <div>
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
+    <div
+      style={{ alignSelf: "start", position: "sticky", top: "10%", left: "1%" }}
+    >
+      <div style={bigText}>Content Search:</div>
+      <div>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      </div>
+      <br />
+      <div style={bigText}>Study Area:</div>
       <div>{studyAreaCheckbox}</div>
+      <br />
+      <div style={bigText}>Difficulty:</div>
       <div>{difficultyCheckbox}</div>
     </div>
   );
